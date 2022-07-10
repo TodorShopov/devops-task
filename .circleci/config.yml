@@ -5,23 +5,17 @@ jobs:
   build:
     docker:
       - image: cimg/base:stable
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
       - run: 
           name: "Build & Deploy"
           command: |
-            docker login
+            docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASSWORD
             docker build -t toshkooshopov/devops_task_nexo:${$CIRCLE_SHA1} .
             docker push toshkooshopov/devops_task_nexo:${$CIRCLE_SHA1}
   test:
     docker:
       - image: cimg/base:stable
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
       - run: echo "this is the test job"
