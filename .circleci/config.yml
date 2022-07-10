@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: cimg/base
         auth:
-          username: mydockerhub-user
+          username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
@@ -15,7 +15,7 @@ jobs:
     docker:
       - image: cimg/<language>:<version TAG>
         auth:
-          username: mydockerhub-user
+          username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
