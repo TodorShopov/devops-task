@@ -10,7 +10,12 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: echo "this is the build job"
+      - run: 
+          name: "Build & Deploy"
+          command: |
+            docker login
+            docker build -t toshkooshopov/devops_task_nexo:${$CIRCLE_SHA1} .
+            docker push toshkooshopov/devops_task_nexo:${$CIRCLE_SHA1}
   test:
     docker:
       - image: cimg/base:stable
