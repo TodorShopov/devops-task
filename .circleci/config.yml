@@ -1,6 +1,5 @@
 version: 2.1
 
-# Define the jobs we want to run for this project
 jobs:
   build:
     docker:
@@ -14,16 +13,8 @@ jobs:
             docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASSWORD
             docker build -t toshkooshopov/devops_task_nexo:latest .
             docker push toshkooshopov/devops_task_nexo:latest
-  test:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      - run: echo "this is the test job"
 
-# Orchestrate our job run sequence
 workflows:
   build_and_test:
     jobs:
       - build
-      - test

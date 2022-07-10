@@ -1,15 +1,40 @@
-# Simple Python Flask Dockerized Application#
+## Installation
 
-Build the image using the following command
+- You need to have Minikube installed on your local machine to run a Kubernetes cluster locally.
 
-```bash
-$ docker build -t simple-flask-app:latest .
+### 1. Apply the Kubernetes Deployment
+```
+kubectl apply -f flask-k8s-deployment.yml
 ```
 
-Run the Docker container using the command shown below.
-
-```bash
-$ docker run -d -p 3000:3000 simple-flask-app
+### 2. Apply the Kubernetes Service
+```
+kubectl apply -f flask-k8s-service.yml
 ```
 
-The application will be accessible at http:127.0.0.1:3000 or if you are using boot2docker then first find ip address using `$ boot2docker ip` and the use the ip `http://<host_ip>:3000`
+### 3. Check pod runs properly:
+```
+kubectl get pods
+kubctl get all
+kubectl describe pod <pod-name>
+```
+
+### 4. Get the IP via minikube
+```
+minikube service --all
+```
+
+### 5. Click the link with the `ip_address:port` in the browser to open the app.
+
+### 6. Open minikube dashboard
+```
+minikube dashboard
+```
+
+
+
+
+
+
+
+
